@@ -1,0 +1,48 @@
+{
+    "_default_": {
+        "dynamic_templates": [
+            {
+                "ip": {
+                    "match_pattern"     : "regex",
+                    "match"             : "[i|I][p|P]_*addr[ess]{0,1}|ip",
+                    "match_mapping_type": "string",
+                    "mapping"           : {"type": "ip"}
+                }
+            },{
+                "network": {
+                    "match_pattern"     : "regex",
+                    "match"             : "[g|G]ateway.*|[n|N]etwork|[n|N]etmask.*|[s|S]ubnet",
+                    "match_mapping_type": "string",
+                    "mapping"           : {"type": "ip"}
+                }
+            },{
+                "fqdn": {
+                    "match_pattern"     : "regex",
+                    "match"             : "[h|H]ost|[h|H]ostname|[s|S]erver|fqdn|FQDN",
+                    "mapping"           : {"type": "string", "index": "not_analyzed"}
+                }
+            },{
+                "_lastUpdated": {
+                    "match_pattern"     : "regex",
+                    "match"             : "_*[l|L]ast.*[U|u]pdated*",
+                    "mapping"           : {"type": "double"}
+                }
+            },{
+                "_id": {
+                    "match": "_id",
+                    "mapping": {"type": "string"}
+                }
+            },{
+                "id": {
+                    "match": "id",
+                    "mapping": {"type": "string"}
+                }
+            },{
+                "graphics": {
+                    "match": "graphics",
+                    "mapping": {"type": "object"}
+                }
+            }
+        ]
+    }
+}
