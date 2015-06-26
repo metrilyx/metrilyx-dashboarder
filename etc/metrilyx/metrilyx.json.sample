@@ -10,8 +10,8 @@
     },
     "http": {
         "port": 9090,
-        "webroot": "/opt/metrilyx/ui",
-        "client_conf": "/opt/metrilyx/etc/metrilyx/ui.json",
+        "webroot": "metrilyx-web",
+        "client_conf": "etc/metrilyx/ui.json",
         "endpoints": {
             "dashboards": "/api/dashboards",
             "schemas": "/api/schemas",
