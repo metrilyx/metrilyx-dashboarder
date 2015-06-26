@@ -1,0 +1,3 @@
+[submodule "metrilyx-web"]
+	path = metrilyx-web
+	url = https://github.com/metrilyx/metrilyx-web
