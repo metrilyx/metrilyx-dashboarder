@@ -69,7 +69,7 @@ func LoadConfig(cfgfile string) (*Config, error) {
 		return cfg, err
 	}
 
-	if !strings.HasPrefix(cfg.Http.Webroot, "/") {
+	if cfg.Http.Webroot != "" && !strings.HasPrefix(cfg.Http.Webroot, "/") {
 		if wd, err = os.Getwd(); err == nil {
 			cfg.Http.Webroot = wd + "/" + cfg.Http.Webroot
 		} else {
@@ -77,7 +77,7 @@ func LoadConfig(cfgfile string) (*Config, error) {
 		}
 	}
 
-	if !strings.HasPrefix(cfg.Http.ClientConf, "/") {
+	if cfg.Http.Webroot != "" && !strings.HasPrefix(cfg.Http.ClientConf, "/") {
 		cfg.Http.ClientConf = cfg.Http.Webroot + "/" + cfg.Http.ClientConf
 	}
 

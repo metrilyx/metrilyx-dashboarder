@@ -45,8 +45,12 @@ func main() {
 	}
 
 	/* Webroot handler */
-	http.Handle("/", http.FileServer(http.Dir(cfg.Http.Webroot)))
-	logger.Warning.Printf("Webroot: %s\n", cfg.Http.Webroot)
+	if cfg.Http.Webroot != "" {
+		http.Handle("/", http.FileServer(http.Dir(cfg.Http.Webroot)))
+		logger.Warning.Printf("Webroot: %s\n", cfg.Http.Webroot)
+	} else {
+		logger.Warning.Printf("Web UI DISABLED\n")
+	}
 
 	logger.Warning.Printf("Starting HTTP server on port %d...\n", cfg.Http.Port)
 	logger.Error.Fatalf("%s", http.ListenAndServe(fmt.Sprintf(":%d", cfg.Http.Port), nil))
