@@ -4,7 +4,14 @@ import (
 	"github.com/metrilyx/metrilyx-dashboarder/metrilyx/config"
 	"io/ioutil"
 	"net/http"
+	"path/filepath"
 	"testing"
+)
+
+var (
+	testConfigFile, _   = filepath.Abs("../../etc/metrilyx/metrilyx.json.sample")
+	testUIConfigFile, _ = filepath.Abs("../../etc/metrilyx/ui.json.sample")
+	testConfig          *config.Config
 )
 
 func Test_ConfigService(t *testing.T) {
@@ -13,6 +20,7 @@ func Test_ConfigService(t *testing.T) {
 	if err != nil {
 		t.Fatalf("%s", err)
 	}
+	cfg.Http.ClientConf = testUIConfigFile
 	t.Logf("Endpoint: %s", cfg.Http.Endpoints.Config)
 
 	go func() {

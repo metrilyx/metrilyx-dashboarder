@@ -72,12 +72,6 @@ func (c *ConfigService) configHandler(w http.ResponseWriter, r *http.Request) {
 
 		wrappers.WriteHttpJsonResponse(w, r, tmp, 200)
 		break
-	/*case "POST":
-		break
-	case "PUT":
-		break
-	case "PATCH":
-		break*/
 	default:
 		w.WriteHeader(405)
 		break

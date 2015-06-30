@@ -3,7 +3,7 @@
         "type": "elasticsearch",
         "config": {
             "index": "metrilyx",
-            "mapping_file": "etc/metrilyx/ess-dashboard-mapping.json",
+            "mapping_file": "/opt/metrilyx/etc/metrilyx/ess-dashboard-mapping.json",
             "host": "127.0.0.1",
             "port": 9200
         }
@@ -11,7 +11,7 @@
     "http": {
         "port": 9090,
         "webroot": "metrilyx-web",
-        "client_conf": "etc/metrilyx/ui.json",
+        "client_conf": "/opt/metrilyx/etc/metrilyx/ui.json",
         "endpoints": {
             "dashboards": "/api/dashboards",
             "schemas": "/api/schemas",

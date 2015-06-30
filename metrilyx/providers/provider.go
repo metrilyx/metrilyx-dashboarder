@@ -8,6 +8,8 @@ import (
 type ProviderType string
 
 const (
+	DEFAULT_AGGR = "sum"
+
 	DP_TYPE_OPENTSDB ProviderType = "opentsdb"
 	DP_TYPE_HTTP     ProviderType = "http"
 )
@@ -18,7 +20,8 @@ var PROVIDER_TYPES = []ProviderType{
 }
 
 type IProvider interface {
-	Fetch() ([]interface{}, error)
+	//Fetch() ([]interface{}, error)
+	DataAggregator() string
 }
 
 func NewProvider(ptype ProviderType, pdata []byte) (IProvider, error) {

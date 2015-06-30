@@ -5,8 +5,6 @@ import (
 	"testing"
 )
 
-//var testDashboardFile string = ""
-
 func Test_Dashboard(t *testing.T) {
 	nd := NewDashboard(true)
 	if len(nd.Layout[0][0]) != 0 {
@@ -27,14 +25,3 @@ func Test_Dashboard(t *testing.T) {
 	}
 	t.Logf("%s\n", b)
 }
-
-/*
-func Test_NewDashboardFromFile(t *testing.T) {
-    d, err := NewDashboardFromFile(testDashboardFile)
-    if err != nil {
-        t.Errorf("%s", err)
-        t.FailNow()
-    }
-    t.Logf("%s", d)
-}
-*/

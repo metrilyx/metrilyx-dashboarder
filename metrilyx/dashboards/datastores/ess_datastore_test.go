@@ -6,17 +6,18 @@ import (
 	"github.com/metrilyx/metrilyx-dashboarder/metrilyx/config"
 	schemas "github.com/metrilyx/metrilyx-dashboarder/metrilyx/dashboards/schemas/v3"
 	"io/ioutil"
+	"path/filepath"
 	"testing"
 )
 
 var (
-	testLogger              = simplelog.NewStdLogger()
-	testDashId              = "Metrilyx"
-	testDashJsonFile        = "/Users/abs/workbench/GoLang/src/github.com/metrilyx/metrilyx-dashboarder/testdata/metrilyx.json"
-	testConfigFile   string = "/Users/abs/workbench/GoLang/src/github.com/metrilyx/metrilyx-dashboarder/etc/metrilyx/metrilyx.json"
-	testConfig       *config.Config
-	testEssDs        *ElasticsearchDatastore
-	testDash         = schemas.NewDashboard(true)
+	testLogger          = simplelog.NewStdLogger()
+	testDashId          = "Metrilyx"
+	testDashJsonFile, _ = filepath.Abs("../../../testdata/metrilyx.json")
+	testConfigFile, _   = filepath.Abs("../../../etc/metrilyx/metrilyx.json")
+	testConfig          *config.Config
+	testEssDs           *ElasticsearchDatastore
+	testDash            = schemas.NewDashboard(true)
 )
 
 func Test_ElasticsearchDatastore(t *testing.T) {

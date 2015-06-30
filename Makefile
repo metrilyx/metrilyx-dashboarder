@@ -9,11 +9,14 @@ INSTALL_DIR = ${BUILD_DIR}/opt/metrilyx
 BIN_DIR = ${INSTALL_DIR}/bin
 WEBROOT = webroot
 
-clean:
+.clean:
 	rm -rf ${BUILD_DIR}
 	go clean -i ./...
 
-test: clean
+.deps:
+	go get -d -v ./...
+
+test: .clean .deps
 	go test -v -cover ./...
 
 .build_web:
@@ -22,18 +25,17 @@ test: clean
 	cp -a metrilyx-web ${INSTALL_DIR}/${WEBROOT}
 	rm -f ${INSTALL_DIR}/${WEBROOT}/.git
 
-.build_osx: clean .build_web
+.build_osx: .clean .build_web .deps
 	[ -d ./build ] || mkdir -p ${BUILD_DIR}
-	go get -d -v ./...
 	
 	[ -d ${BIN_DIR} ] || mkdir -p ${BIN_DIR}
 	GOOS=darwin GOARCH=amd64 go build -o ${BIN_DIR}/${NAME} ${NAME}.go 
 
 	cp -a ./etc ${INSTALL_DIR}
 
-	cd ${BUILD_DIR_BASE} && tar -czvf ${NAME}-${VERSION}-darwin.x86_64.tgz ${NAME}
+	cd ${BUILD_DIR_BASE} && tar -czf ${NAME}.darwin.x86_64.tgz ${NAME}
 
-.build_linux: clean .build_web
+.build_linux: .clean .build_web .deps
 	[ -d ./build ] || mkdir -p ${BUILD_DIR}
 	go get -d -v ./...
 	
@@ -42,5 +44,5 @@ test: clean
 
 	cp -a ./etc ${INSTALL_DIR}
 
-	cd ${BUILD_DIR_BASE} && tar -czvf ${NAME}-${VERSION}-linux.x86_64.tgz ${NAME}
+	cd ${BUILD_DIR_BASE} && tar -czf ${NAME}.linux.x86_64.tgz ${NAME}
 

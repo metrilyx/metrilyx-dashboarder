@@ -24,3 +24,7 @@ type OpenTSDBProvider struct {
 
 	RateOptions OpenTSDBRateOptions `json:"rateOptions,omitempty"`
 }
+
+func (o *OpenTSDBProvider) DataAggregator() string {
+	return o.Query.Aggregator
+}
