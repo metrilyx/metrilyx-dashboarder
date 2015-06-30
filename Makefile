@@ -1,15 +1,16 @@
 SHELL=/bin/bash
 
-
 NAME = metrilyx-dashboarder
-BUILD_DIR = ./build/${NAME}
+VERSION = $(shell cat VERSION)
+BUILD_DIR_BASE = ./build
+BUILD_DIR = ${BUILD_DIR_BASE}/${NAME}
 
 INSTALL_DIR = ${BUILD_DIR}/opt/metrilyx
 BIN_DIR = ${INSTALL_DIR}/bin
 WEBROOT = webroot
 
 clean:
-	rm -rf ./build
+	rm -rf ${BUILD_DIR}
 	go clean -i ./...
 
 test: clean
@@ -21,11 +22,25 @@ test: clean
 	cp -a metrilyx-web ${INSTALL_DIR}/${WEBROOT}
 	rm -f ${INSTALL_DIR}/${WEBROOT}/.git
 
-build: clean .build_web
+.build_osx: clean .build_web
 	[ -d ./build ] || mkdir -p ${BUILD_DIR}
 	go get -d -v ./...
 	
 	[ -d ${BIN_DIR} ] || mkdir -p ${BIN_DIR}
-	go build -o ${BIN_DIR}/${NAME} ${NAME}.go 
+	GOOS=darwin GOARCH=amd64 go build -o ${BIN_DIR}/${NAME} ${NAME}.go 
 
 	cp -a ./etc ${INSTALL_DIR}
+
+	cd ${BUILD_DIR_BASE} && tar -czvf ${NAME}-${VERSION}-darwin.x86_64.tgz ${NAME}
+
+.build_linux: clean .build_web
+	[ -d ./build ] || mkdir -p ${BUILD_DIR}
+	go get -d -v ./...
+	
+	[ -d ${BIN_DIR} ] || mkdir -p ${BIN_DIR}
+	GOOS=linux GOARCH=amd64 go build -o ${BIN_DIR}/${NAME} ${NAME}.go 
+
+	cp -a ./etc ${INSTALL_DIR}
+
+	cd ${BUILD_DIR_BASE} && tar -czvf ${NAME}-${VERSION}-linux.x86_64.tgz ${NAME}
+
