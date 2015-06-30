@@ -15,6 +15,7 @@ var (
 	testDashId          = "Metrilyx"
 	testDashJsonFile, _ = filepath.Abs("../../../testdata/metrilyx.json")
 	testConfigFile, _   = filepath.Abs("../../../etc/metrilyx/metrilyx.json.sample")
+	testEssMapFile, _   = filepath.Abs("../../../etc/metrilyx/ess-dashboard-mapping.json")
 	testConfig          *config.Config
 	testEssDs           *ElasticsearchDatastore
 	testDash            = schemas.NewDashboard(true)
@@ -29,6 +30,8 @@ func Test_ElasticsearchDatastore(t *testing.T) {
 	if err != nil {
 		t.Fatalf("FAILED: %s", err)
 	}
+	testConfig.Datastore.TypeConfig["mapping_file"] = testEssMapFile
+
 	testEssDs, err = NewElasticsearchDatastore(&testConfig.Datastore, testLogger)
 	if err != nil {
 		t.Errorf("%s", err)
