@@ -1,0 +1,33 @@
+{
+    "websocket": "ws://127.0.0.1:9000",
+    "annotations": {
+        "enabled": true,
+        "endpoints": {
+            "types": "http://localhost:9898/api/v1/types",
+            "annotations": "http://localhost:9898/api/v1/annotations",
+            "websocket": "ws://localhost:9898/v1/data"
+        }
+    },
+    "globaltags": {
+        "enabled": true
+    },
+    "timeselector": {
+        "enabled": true,
+        "defaultTimeWindow": "1h-ago"
+    },
+    "auth": {
+        "enabled": false
+    },
+    "providers": [
+        {
+            "name": "opentsdb.prod",
+            "type": "opentsdb",
+            "method": "GET",
+            "url" : "http://<tsdb_host>/api/query",
+            "host": "<tsdb_host>"
+        },{
+            "name": "http",
+            "type": "http" 
+        }
+    ]
+}

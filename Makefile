@@ -2,10 +2,11 @@ SHELL=/bin/bash
 
 
 NAME = metrilyx-dashboarder
-BUILD_DIR = ./build/metrilyx
+BUILD_DIR = ./build/${NAME}
 
 INSTALL_DIR = ${BUILD_DIR}/opt/metrilyx
 BIN_DIR = ${INSTALL_DIR}/bin
+WEBROOT = webroot
 
 clean:
 	rm -rf ./build
@@ -14,7 +15,13 @@ clean:
 test: clean
 	go test -v -cover ./...
 
-build: clean
+.build_web:
+	[ -d ${INSTALL_DIR} ] || mkdir -p ${INSTALL_DIR}
+	git submodule init
+	cp -a metrilyx-web ${INSTALL_DIR}/${WEBROOT}
+	rm -f ${INSTALL_DIR}/${WEBROOT}/.git
+
+build: clean .build_web
 	[ -d ./build ] || mkdir -p ${BUILD_DIR}
 	go get -d -v ./...
 	
