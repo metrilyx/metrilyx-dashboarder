@@ -3,7 +3,7 @@ language: go
 services:
     - elasticsearch
 install:
-- make test
+- make .test
 - make .build_linux
 
 deploy:
