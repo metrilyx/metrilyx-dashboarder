@@ -6,7 +6,7 @@ import (
 )
 
 var (
-	testConfigFile, _ = filepath.Abs("../../etc/metrilyx/metrilyx.json")
+	testConfigFile, _ = filepath.Abs("../../etc/metrilyx/metrilyx.json.sample")
 	testErrCfgFile, _ = filepath.Abs("../../testdata/bad_json.json")
 )
 

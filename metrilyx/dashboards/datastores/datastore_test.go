@@ -8,6 +8,8 @@ import (
 
 func Test_LoadDatastore(t *testing.T) {
 	testConfig, _ = config.LoadConfig(testConfigFile)
+	testConfig.Datastore.TypeConfig["mapping_file"] = testEssMapFile
+
 	ds, err := LoadDatastore(&testConfig.Datastore, simplelog.NewStdLogger())
 	if err != nil {
 		t.Fatalf("%s", err)

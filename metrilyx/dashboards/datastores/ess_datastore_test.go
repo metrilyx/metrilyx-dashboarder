@@ -38,6 +38,7 @@ func Test_ElasticsearchDatastore(t *testing.T) {
 		t.FailNow()
 	}
 }
+
 func Test_ElasticsearchDatastore_NOT_FOUND(t *testing.T) {
 	if _, err := testEssDs.Get("hoopla-1232"); err == nil {
 		t.Errorf("Error checking failed")
