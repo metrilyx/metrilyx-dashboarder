@@ -8,7 +8,7 @@ import (
 )
 
 type IDashboardDatastore interface {
-	List() []map[string]string
+	List() []map[string]interface{}
 	Get(string) (*schemas.Dashboard, error)
 	Add(schemas.Dashboard) error
 	Remove(string) error

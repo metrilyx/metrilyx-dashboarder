@@ -110,9 +110,9 @@ func (e *ElasticsearchDatastore) initializeIndex(mappingFile string) error {
 	return nil
 }
 
-func (e *ElasticsearchDatastore) List() []map[string]string {
+func (e *ElasticsearchDatastore) List() []map[string]interface{} {
 	var (
-		list    []map[string]string
+		list    []map[string]interface{}
 		tmpDash schemas.Dashboard
 	)
 
@@ -121,19 +121,23 @@ func (e *ElasticsearchDatastore) List() []map[string]string {
 		return list
 	}
 
-	list = make([]map[string]string, len(resp.Hits.Hits))
+	list = make([]map[string]interface{}, len(resp.Hits.Hits))
 
 	for i, hit := range resp.Hits.Hits {
 
 		err := json.Unmarshal(*hit.Source, &tmpDash)
 		if err != nil {
 			e.logger.Warning.Printf("Could not parse json: %s", *hit.Source)
-			list[i] = map[string]string{
+			list[i] = map[string]interface{}{
 				"error": fmt.Sprintf("Could not parse json: %s", *hit.Source),
 			}
 			continue
 		}
-		list[i] = map[string]string{"name": tmpDash.Name, "_id": tmpDash.Id}
+		list[i] = map[string]interface{}{
+			"name": tmpDash.Name,
+			"_id":  tmpDash.Id,
+			"tags": tmpDash.Tags,
+		}
 	}
 	return list
 }
