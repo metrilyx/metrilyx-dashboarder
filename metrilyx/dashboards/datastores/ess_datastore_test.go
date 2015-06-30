@@ -14,7 +14,7 @@ var (
 	testLogger          = simplelog.NewStdLogger()
 	testDashId          = "Metrilyx"
 	testDashJsonFile, _ = filepath.Abs("../../../testdata/metrilyx.json")
-	testConfigFile, _   = filepath.Abs("../../../etc/metrilyx/metrilyx.json")
+	testConfigFile, _   = filepath.Abs("../../../etc/metrilyx/metrilyx.json.sample")
 	testConfig          *config.Config
 	testEssDs           *ElasticsearchDatastore
 	testDash            = schemas.NewDashboard(true)
