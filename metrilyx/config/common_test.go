@@ -1,13 +1,13 @@
 package config
 
 import (
+	"path/filepath"
 	"testing"
 )
 
 var (
-	testAppHome    = "/Users/abs/workbench/GoLang/src/github.com/metrilyx/metrilyx-dashboarder"
-	testConfigFile = testAppHome + "/etc/metrilyx/metrilyx.json"
-	testErrCfgFile = testAppHome + "/testdata/bad_json.json"
+	testConfigFile, _ = filepath.Abs("../../etc/metrilyx/metrilyx.json")
+	testErrCfgFile, _ = filepath.Abs("../../testdata/bad_json.json")
 )
 
 func Test_LoadConfig(t *testing.T) {
