@@ -10,6 +10,7 @@ script:
 after_success:
     - apt-get -y update
     - apt-get install ruby ruby-dev make rpm
+    - gem install fpm
     - make .rpm
     - make .deb
     - ls ./build
@@ -23,8 +24,8 @@ deploy:
     skip_cleanup: true
 
     file:
-        - build/metrilyx-dataserver*.x86_64.rpm
-        - build/metrilyx-dataserver_*_amd64.deb
+        - build/metrilyx-dataserver-3.0.0-1.x86_64.rpm
+        - build/metrilyx-dataserver_3.0.0_amd64.deb
 
     on:
         all_branches: true
