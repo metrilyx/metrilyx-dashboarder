@@ -3,6 +3,9 @@ language: go
 services:
     - elasticsearch
 
+before_script:
+    - sleep 10
+
 script:
     - make .test
     - make
