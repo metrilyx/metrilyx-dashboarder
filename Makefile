@@ -18,7 +18,7 @@ WEBROOT = webroot
 .deps:
 	go get -d -v ./...
 
-.test: clean .deps
+.test: .clean .deps
 	go test -v -cover ./...
 
 .build_webroot:
