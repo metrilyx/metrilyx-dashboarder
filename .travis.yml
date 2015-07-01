@@ -8,9 +8,9 @@ script:
     - make
 
 after_success:
-    - apt-get -y update
-    - apt-get install ruby ruby-dev make rpm
-    - gem install fpm
+    - sudo apt-get -y update
+    - sudo apt-get install ruby ruby-dev make rpm
+    - sudo gem install fpm
     - make .rpm
     - make .deb
     - ls ./build
