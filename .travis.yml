@@ -5,7 +5,7 @@ services:
 
 script:
 - make .test
-- make .build_linux
+- make
 
 deploy:
   provider: releases
