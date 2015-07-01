@@ -4,18 +4,28 @@ services:
     - elasticsearch
 
 script:
-- make .test
-- make
+    - make .test
+    - make
+
+after_success:
+    - apt-get -y update
+    - apt-get install ruby ruby-dev make rpm
+    - make .rpm
+    - make .deb
+    - ls ./build
 
 deploy:
-  provider: releases
-  
-  api_key:
-    secure: jGPZm+KUemHWV26n2vHWZ70TeSupPecH7f3JhT31jY6bCRZkwQRUS29b3tqb9uKeFfZyU1zuCmK9dZNjif7JLFvO6yW1B66KW0iudqVd20T0FdUOjjebbYecGd8sGIDFd046ZOkaLybp6xuxCO/qQCc0Ng2BqXbA8q9MHvzBokUIdCL+IzHfETiuX/WfuREH4HX7GPl8ikcU6SPBGP+6Ltn2Ao2KQadBYDLKUQDkhZirOIo1SRLBdTsPkh+rHUr9NmozkKuSppCns8Y5H8vUv3uMbhROi3H50mlPE2fNSAS/LUMaR48tHgAJK7+Iz6/4HvH7mzLXm6BrC9ntbERx/l97olglJwzNbS1e72X224cMFTMMo9/rs91YobTXBzwsFpg684ybuZNdZsdOUoKWpuRHXBs09eeqFrxPFntiLfcjAhcWSnhZwaOlL0itgZ2JwMDWg/W0e0vlPUH5OTFWPayttlc55oEJmggMt3XZBMYr2LwabV5S5uhPTM30cnvJ4mhtguyn5O3wRNkajNE82IHuXWo8WOrYoFs0CLmX8BcCIJRhxh/Ae+TxHNcU34Ns82t/KI2ZVIRr+svZsIm8T/CBHCq/flL5w0Wt43q7lx7/D39bNQIIGuk0QBWLVUX6GbMZjUaq/izHAdcrbcFDEjg/rCwEll5QvtPCWvp7ddc=
-  
-  file: 
-  - metrilyx-dataserver.linux.x86_64.tgz
-  
-  on:
-    tags: true
-    repo: metrilyx/metrilyx-dashboarder
+    provider: releases
+
+    api_key:
+        secure: jGPZm+KUemHWV26n2vHWZ70TeSupPecH7f3JhT31jY6bCRZkwQRUS29b3tqb9uKeFfZyU1zuCmK9dZNjif7JLFvO6yW1B66KW0iudqVd20T0FdUOjjebbYecGd8sGIDFd046ZOkaLybp6xuxCO/qQCc0Ng2BqXbA8q9MHvzBokUIdCL+IzHfETiuX/WfuREH4HX7GPl8ikcU6SPBGP+6Ltn2Ao2KQadBYDLKUQDkhZirOIo1SRLBdTsPkh+rHUr9NmozkKuSppCns8Y5H8vUv3uMbhROi3H50mlPE2fNSAS/LUMaR48tHgAJK7+Iz6/4HvH7mzLXm6BrC9ntbERx/l97olglJwzNbS1e72X224cMFTMMo9/rs91YobTXBzwsFpg684ybuZNdZsdOUoKWpuRHXBs09eeqFrxPFntiLfcjAhcWSnhZwaOlL0itgZ2JwMDWg/W0e0vlPUH5OTFWPayttlc55oEJmggMt3XZBMYr2LwabV5S5uhPTM30cnvJ4mhtguyn5O3wRNkajNE82IHuXWo8WOrYoFs0CLmX8BcCIJRhxh/Ae+TxHNcU34Ns82t/KI2ZVIRr+svZsIm8T/CBHCq/flL5w0Wt43q7lx7/D39bNQIIGuk0QBWLVUX6GbMZjUaq/izHAdcrbcFDEjg/rCwEll5QvtPCWvp7ddc=
+
+    skip_cleanup: true
+
+    file:
+        - build/metrilyx-dataserver*.x86_64.rpm
+        - build/metrilyx-dataserver_*_amd64.deb
+
+    on:
+        all_branches: true
+        repo: metrilyx/metrilyx-dashboarder
