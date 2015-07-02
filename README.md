@@ -1,4 +1,4 @@
-# metrilyx-dashboarder
+# metrilyx-dashboarder [![Build Status](https://travis-ci.org/metrilyx/metrilyx-dashboarder.svg?branch=master)](https://travis-ci.org/metrilyx/metrilyx-dashboarder)
 
 Requirements
 ------------

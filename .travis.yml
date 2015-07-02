@@ -11,7 +11,7 @@ services:
 before_install:
     - sudo apt-get -y update
     - sudo apt-get install ruby ruby-dev make rpm rubygems
-    - sudo gem install fpm --no-ri --no-rdoc
+    - gem install fpm --no-ri --no-rdoc
 
 before_script:
     - sleep 10
