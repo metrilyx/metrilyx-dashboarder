@@ -43,13 +43,19 @@ func NewElasticsearchDatastore(cfg *config.DatastoreConfig, logger *simplelog.Lo
 	ed.conn.Domain = typeCfg.Host
 	ed.conn.Port = fmt.Sprintf("%d", typeCfg.Port)
 
+	//ed.conn.ExistsIndex(index, _type, args)
 	idxExists, err = ed.conn.ExistsIndex(ed.index, "", nil)
+	//logger.Error.Println(idxExists)
+
 	if err != nil {
-		if err.Error() == "record not found" {
-			idxExists = false
-		} else {
-			return &ed, err
-		}
+		/*
+			if err.Error() == "record not found" {
+				idxExists = false
+			} else {
+				return &ed, err
+			}
+		*/
+		return &ed, fmt.Errorf("Failed index check: %s", err)
 	}
 
 	if !idxExists {
