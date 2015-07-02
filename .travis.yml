@@ -13,6 +13,7 @@ before_install:
     - sudo apt-get install ruby ruby-dev make rpm rubygems
     - gem install fpm --no-ri --no-rdoc
 
+# Wait for elasticsearch to startup
 before_script:
     - sleep 10
 
@@ -25,6 +26,7 @@ script:
 after_success:
     - ls ./build
 
+# Only upload on new tag.
 deploy:
     provider: releases
 
@@ -38,5 +40,11 @@ deploy:
         - build/metrilyx-dataserver_3.0.0_amd64.deb
 
     on:
-        all_branches: true
-        repo: metrilyx/metrilyx-dashboarder
+        tags: true
+
+notifications:
+    slack:
+        rooms:
+          - ticketmaster:E5CXbILXq45Y5LYcsO8BD3B3#metrilyx
+          - ticketmaster:E5CXbILXq45Y5LYcsO8BD3B3#infradev
+
