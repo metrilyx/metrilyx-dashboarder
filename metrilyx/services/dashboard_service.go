@@ -38,9 +38,11 @@ func NewDashboardHTTPService(cfg *config.Config, logger *simplelog.Logger) (*Das
 		d.logger = simplelog.NewStdLogger()
 	}
 
-	if d.datastore, err = datastores.LoadDatastore(&cfg.Datastore, logger); err != nil {
+	d.logger.Trace.Printf("Loading datastore with config: %v...\n", cfg.Datastore)
+	if d.datastore, err = datastores.LoadDatastore(&cfg.Datastore, d.logger); err != nil {
 		return &d, err
 	}
+	d.logger.Debug.Printf("Datastore loaded: %s", cfg.Datastore.Type)
 
 	d.setEndpointParts(cfg.Http.Endpoints.Dashboards)
 	d.registerEndpoints(cfg.Http)

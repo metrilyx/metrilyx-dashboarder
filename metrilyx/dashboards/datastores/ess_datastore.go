@@ -25,11 +25,11 @@ type ElasticsearchDatastore struct {
 }
 
 func NewElasticsearchDatastore(cfg *config.DatastoreConfig, logger *simplelog.Logger) (*ElasticsearchDatastore, error) {
-
+	//logger.Info.Printf("HERE\n")
 	var (
 		ed        = ElasticsearchDatastore{logger: logger}
 		err       error
-		idxExists bool
+		idxExists = false
 	)
 
 	typeCfg, err := ed.parseTypeConfig(cfg.TypeConfig)
@@ -44,14 +44,14 @@ func NewElasticsearchDatastore(cfg *config.DatastoreConfig, logger *simplelog.Lo
 	ed.conn.Port = fmt.Sprintf("%d", typeCfg.Port)
 
 	//ed.conn.ExistsIndex(index, _type, args)
+	logger.Trace.Printf("Checking if index exists...\n")
 	idxExists, err = ed.conn.ExistsIndex(ed.index, "", nil)
-	//logger.Error.Println(idxExists)
+	//logger.Error.Println("exists=%s; err=%s", idxExists, err)
 
 	//logger.Error.Printf("%s\n", idxExists)
 
 	if err != nil {
 		if err.Error() == "record not found" {
-			logger.Error.Printf("%s\n", err)
 			idxExists = true
 		} else {
 			return &ed, fmt.Errorf("Failed index check: %s", err)

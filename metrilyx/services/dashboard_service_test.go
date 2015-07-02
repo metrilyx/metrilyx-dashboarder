@@ -15,6 +15,7 @@ func Test_DashboardHTTPService(t *testing.T) {
 	if testConfig, err = config.LoadConfig(testConfigFile); err != nil {
 		t.Fatalf("%s", err)
 	}
+
 	testConfig.Datastore.TypeConfig["mapping_file"] = testEssMapFile
 
 	ndhs, err := NewDashboardHTTPService(testConfig, nil)
