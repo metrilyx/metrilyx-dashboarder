@@ -52,10 +52,10 @@ WEBROOT = webroot
 
 .rpm:
 	[ -d ${BUILD_DIR_BASE}/el ] || mkdir -p ${BUILD_DIR_BASE}/el
-	cd ${BUILD_DIR_BASE}/el &&  fpm -s dir -t rpm --version ${VERSION} ../${NAME}
+	cd ${BUILD_DIR_BASE}/el &&  fpm -s dir -t rpm -n ${NAME} --version ${VERSION} ../${NAME}
 
 .deb:
 	[ -d ${BUILD_DIR_BASE}/ubuntu ] || mkdir -p ${BUILD_DIR_BASE}/ubuntu
-	cd ${BUILD_DIR_BASE}/ubuntu &&  fpm -s dir -t deb --version ${VERSION} ../${NAME}
+	cd ${BUILD_DIR_BASE}/ubuntu &&  fpm -s dir -t deb -n ${NAME} --version ${VERSION} ../${NAME}
 
 all: .clean .deps .build_native .build_webroot
