@@ -51,9 +51,11 @@ WEBROOT = webroot
 	cp -a ./etc ${INSTALL_DIR}
 
 .rpm:
-	cd ${BUILD_DIR_BASE} &&  fpm -s dir -t rpm -n ${NAME} --version ${VERSION} ${NAME}
+	[ -d ${BUILD_DIR_BASE}/el ] || mkdir -p ${BUILD_DIR_BASE}/el
+	cd ${BUILD_DIR_BASE}/el &&  fpm -s dir -t rpm -n ${NAME} --version ${VERSION} ${NAME}
 
 .deb:
-	cd ${BUILD_DIR_BASE} &&  fpm -s dir -t deb -n ${NAME} --version ${VERSION} ${NAME}
+	[ -d ${BUILD_DIR_BASE}/ubuntu ] || mkdir -p ${BUILD_DIR_BASE}/ubuntu
+	cd ${BUILD_DIR_BASE}/ubuntu &&  fpm -s dir -t deb -n ${NAME} --version ${VERSION} ${NAME}
 
 all: .clean .deps .build_native .build_webroot
