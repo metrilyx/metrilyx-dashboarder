@@ -1,5 +1,4 @@
 SHELL=/bin/bash
-
 NGOOS = $(go env GOOS)
 
 NAME = metrilyx-dashboarder
