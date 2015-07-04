@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"path/filepath"
 	"testing"
+	"time"
 )
 
 var (
@@ -30,7 +31,7 @@ func Test_ConfigService(t *testing.T) {
 		}
 		http.ListenAndServe(":3456", nil)
 	}()
-
+	time.Sleep(3)
 	resp, err := http.Get("http://localhost:3456/api/config")
 	if err != nil {
 		t.Fatalf("%s", err)
