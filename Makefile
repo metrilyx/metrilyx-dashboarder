@@ -3,6 +3,7 @@ NGOOS = $(go env GOOS)
 
 NAME = metrilyx-dashboarder
 VERSION = $(shell cat VERSION)
+DESCRIPTION = Metrilyx dashboard engine
 BUILD_DIR_BASE = ./build
 BUILD_DIR = ${BUILD_DIR_BASE}/${NAME}
 
