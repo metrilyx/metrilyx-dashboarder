@@ -18,7 +18,9 @@ script:
   - make .rpm
   - make .deb
 after_success:
-  - ls ./build
+  - ls ./build/el
+  - ls ./build/ubuntu
+  - rpm -qlp ./build/el/metrilyx-dashboarder-3.0.0-1.x86_64.rpm
 
 deploy:
   - provider: packagecloud
