@@ -26,8 +26,6 @@ deploy:
     skip_cleanup: true
     token:
       secure: eo3Fv7MQmGZCRhw/zhuE4GGN8wrjZiWHcYyiiz0VM1VtsIJW1Yetp7K00P+cs1eUdIAEzzBtd6659djgpaNrj/SdLEKd9kBlhGhrdn8En/iCbJ5Rv8K/BEU2BjLRU9hYWLQr9ZWHvm+opVU+R21TJ55qcHJL34NTskCyW08wIxNDGb7lKUCh36k4m3oQX6OYsoVrovdRCSZAZjQlnjFlDSnFSKOwTeZM8USF9Qkrk0ITi5c7hzohDsWPV1OiTQ9XT+bhLwRDXbeN+QCsC7jVUIhoWrKbC82DmGAy1vBAThdDkPMpG2h+ByFEsae0YjAproNW7ZKlda+/PmcwA+O3MjV+spjQqP1lzIk6gRLBq30IPTO/4qe4mxMbTq+u7LOR2YvgmpYfvQn8SJBsAYzxAhczoTAWRn/AwFlpA+JfZwPFe/VuE5fki0EhZq+s+ss31LpdUqLERUnxSx2rqKqwiMxlMH6Rj+FoCcQBKYmazVKhhNy+sqrv4uMyrJ3u38IbmA/YVbKRU9Dn6r6OaII1aZ8i7xgUzh0QEpd95Psmq+ZNBKlBXFrx+okD2FlkDKbFp3isL4fF59GUWarw64yUkJ/8jUcvYeO615RvhT7rqMHN7uBVxToaL1cdOYwoxV3n30mBRhX7B67dqVzQ6nNUrNVeRgD0z+Oyr0trPVKnxRQ=
-    on:
-      tags: true
   - provider: packagecloud
     repository: metrilyx
     username: metrilyx
@@ -36,8 +34,6 @@ deploy:
     skip_cleanup: true
     token:
       secure: eo3Fv7MQmGZCRhw/zhuE4GGN8wrjZiWHcYyiiz0VM1VtsIJW1Yetp7K00P+cs1eUdIAEzzBtd6659djgpaNrj/SdLEKd9kBlhGhrdn8En/iCbJ5Rv8K/BEU2BjLRU9hYWLQr9ZWHvm+opVU+R21TJ55qcHJL34NTskCyW08wIxNDGb7lKUCh36k4m3oQX6OYsoVrovdRCSZAZjQlnjFlDSnFSKOwTeZM8USF9Qkrk0ITi5c7hzohDsWPV1OiTQ9XT+bhLwRDXbeN+QCsC7jVUIhoWrKbC82DmGAy1vBAThdDkPMpG2h+ByFEsae0YjAproNW7ZKlda+/PmcwA+O3MjV+spjQqP1lzIk6gRLBq30IPTO/4qe4mxMbTq+u7LOR2YvgmpYfvQn8SJBsAYzxAhczoTAWRn/AwFlpA+JfZwPFe/VuE5fki0EhZq+s+ss31LpdUqLERUnxSx2rqKqwiMxlMH6Rj+FoCcQBKYmazVKhhNy+sqrv4uMyrJ3u38IbmA/YVbKRU9Dn6r6OaII1aZ8i7xgUzh0QEpd95Psmq+ZNBKlBXFrx+okD2FlkDKbFp3isL4fF59GUWarw64yUkJ/8jUcvYeO615RvhT7rqMHN7uBVxToaL1cdOYwoxV3n30mBRhX7B67dqVzQ6nNUrNVeRgD0z+Oyr0trPVKnxRQ=
-    on:
-      tags: true
 
 notifications:
   slack:
