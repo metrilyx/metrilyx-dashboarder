@@ -7,6 +7,8 @@ DESCRIPTION = Metrilyx dashboard engine
 BUILD_DIR_BASE = ./build
 BUILD_DIR = ${BUILD_DIR_BASE}/${NAME}
 
+DEPS = -d 'elasticsearch >= 1.4.1'
+
 INSTALL_DIR = ${BUILD_DIR}/opt/metrilyx
 BIN_DIR = ${INSTALL_DIR}/bin
 WEBROOT = webroot
@@ -53,12 +55,12 @@ WEBROOT = webroot
 
 .rpm:
 	[ -d ${BUILD_DIR_BASE}/el ] || mkdir -p ${BUILD_DIR_BASE}/el
-	cd ${BUILD_DIR} &&  fpm --verbose -s dir -t rpm -n ${NAME} --version ${VERSION} ./opt
+	cd ${BUILD_DIR} &&  fpm --verbose -s dir -t rpm -n ${NAME} --version ${VERSION} ${DEPS} ./opt
 	mv ${BUILD_DIR}/*.rpm ${BUILD_DIR_BASE}/el/
 
 .deb:
 	[ -d ${BUILD_DIR_BASE}/ubuntu ] || mkdir -p ${BUILD_DIR_BASE}/ubuntu
-	cd ${BUILD_DIR} &&  fpm --verbose -s dir -t deb -n ${NAME} --version ${VERSION} ./opt
+	cd ${BUILD_DIR} &&  fpm --verbose -s dir -t deb -n ${NAME} --version ${VERSION} ${DEPS} ./opt
 	mv ${BUILD_DIR}/*.deb ${BUILD_DIR_BASE}/ubuntu/
 
 
